@@ -14,7 +14,7 @@ var BAR_GAP = 50;
 var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
-}
+};
 
 var getMaxElement = function (arr) {
   var maxElement = arr[0];
@@ -60,9 +60,9 @@ window.renderStatistics = function (ctx, names, times) {
       var min = 20;
       var saturation = Math.random() * (max - min) + min;
 
-      ctx.fillStyle = `hsl(250, 100%, ${saturation}%)`;
+      ctx.fillStyle = 'hsl(250, 100%, ' + saturation + '%)';
     }
     ctx.fillStyle = 'hsl(250, 100, 1)';
     ctx.fillRect(CLOUD_X + BAR_GAP + (BAR_WIDTH + BAR_GAP) * i, CLOUD_Y + CLOUD_HEIGHT - (TEXT_HEIGHT + TEXT_HEIGHT + currentBarHeight), BAR_WIDTH, currentBarHeight);
   }
-}
+};
