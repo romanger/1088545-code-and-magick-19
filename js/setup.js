@@ -37,6 +37,7 @@ var addWizard = function (element, node) {
 };
 
 var setup = document.querySelector('.setup');
+
 setup.classList.remove('hidden');
 setup.querySelector('.setup-similar').classList.remove('hidden');
 
