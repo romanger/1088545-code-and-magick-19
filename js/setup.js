@@ -36,6 +36,15 @@ var addWizard = function (element, node) {
   return node;
 };
 
+var renderWizardsList = function (amount, templet, array, fragment) {
+  for (var i = 0; i < amount; i++) {
+    var wizardElement = templet.cloneNode(true);
+    wizardElement = addWizard(array[i], wizardElement);
+    fragment.appendChild(wizardElement);
+  }
+  return fragment;
+}
+
 var setup = document.querySelector('.setup');
 
 setup.classList.remove('hidden');
@@ -49,10 +58,6 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
 var wizardsArray = getWizardsArray(WIZARDS_NAMES, WIZARDS_SURNAMES, WIZARDS_COAT_COLORS, WIZARDS_EYES_COLORS);
 var fragment = document.createDocumentFragment();
 
-for (var i = 0; i < WIZARDS_AMOUNT; i++) {
-  var wizardElement = similarWizardTemplate.cloneNode(true);
-  wizardElement = addWizard(wizardsArray[i], wizardElement);
-  fragment.appendChild(wizardElement);
-}
+fragment = renderWizardsList(WIZARDS_AMOUNT, similarWizardTemplate, wizardsArray, fragment);
 
 similarListElement.appendChild(fragment);
