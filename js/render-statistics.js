@@ -67,7 +67,7 @@
     }
   };
 
-  window.start.renderStatistics = function (ctx, names, times) {
+  window.renderStatistics = function (ctx, names, times) {
 
     var title = 'Ура вы победили! \nСписок результатов:';
 
