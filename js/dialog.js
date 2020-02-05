@@ -1,8 +1,6 @@
 'use strict';
 
 (function () {
-  var ESC_KEY = 'Escape';
-  var ENTER_KEY = 'Enter';
 
   var setup = document.querySelector('.setup');
   var setupOpen = document.querySelector('.setup-open');
@@ -25,7 +23,7 @@
   };
 
   var onPopupEscPress = function (evt) {
-    if (evt.key === ESC_KEY && usernameInput !== evt.target) {
+    if (evt.key === window.tools.ESC_KEY && usernameInput !== evt.target) {
       closePopup();
     }
   };
@@ -35,7 +33,7 @@
   });
 
   setupOpen.addEventListener('keydown', function (evt) {
-    if (evt.key === ENTER_KEY) {
+    if (evt.key === window.tools.ENTER_KEY) {
       openPopup();
     }
   });
@@ -45,7 +43,7 @@
   });
 
   setupClose.addEventListener('keydown', function (evt) {
-    if (evt.key === ENTER_KEY) {
+    if (evt.key === window.tools.ENTER_KEY) {
       closePopup();
     }
   });

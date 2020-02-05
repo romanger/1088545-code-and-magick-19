@@ -29,7 +29,6 @@
     return maxElement;
   };
 
-
   var getRandomBlue = function (saturationMin, saturationMax) {
     var saturation = Math.random() * (saturationMax - saturationMin) + saturationMin;
     var randomeBlue = 'hsl(250, 100%, ' + saturation + '%)';
@@ -68,7 +67,7 @@
     }
   };
 
-  window.renderStatistics = function (ctx, names, times) {
+  window.start.renderStatistics = function (ctx, names, times) {
 
     var title = 'Ура вы победили! \nСписок результатов:';
 
