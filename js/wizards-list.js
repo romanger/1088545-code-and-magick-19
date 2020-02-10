@@ -21,6 +21,19 @@
     return wizards;
   };
 
+
+  var onRenderError = function (errorMessage) {
+    var node = document.createElement('div');
+    node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: red;';
+    node.style.position = 'absolute';
+    node.style.left = 0;
+    node.style.right = 0;
+    node.style.fontSize = '30px';
+
+    node.textContent = errorMessage;
+    document.body.insertAdjacentElement('afterbegin', node);
+  };
+
   var addWizard = function (element, node) {
     var wizardName = node.querySelector('.setup-similar-label');
     var wizardCoatColor = node.querySelector('.wizard-coat');
@@ -33,18 +46,17 @@
     return node;
   };
 
-  var renderWizardsList = function (template, array, destination) {
+  var renderWizardsList = function (array) {
     var fragment = document.createDocumentFragment();
     for (var i = 0; i < WIZARDS_AMOUNT; i++) {
-      var wizardElement = template.cloneNode(true);
+      var wizardElement = similarWizardTemplate.cloneNode(true);
       wizardElement = addWizard(array[i], wizardElement);
       fragment.appendChild(wizardElement);
     }
-    destination.appendChild(fragment);
+    similarListElement.appendChild(fragment);
   };
 
-  var wizardsArray = getWizardsArray();
-  renderWizardsList(similarWizardTemplate, wizardsArray, similarListElement);
+  window.backend.load(renderWizardsList, onRenderError);
   setup.querySelector('.setup-similar').classList.remove('hidden');
 
 })();
