@@ -2,7 +2,9 @@
 
 (function () {
 
-  var setupPlayer = document.querySelector('.setup-player');
+  var setupWindow = document.querySelector('.setup');
+  var setupForm = setupWindow.querySelector('.setup-wizard-form');
+  var setupPlayer = setupWindow.querySelector('.setup-player');
   var setupPlayerCoatColor = setupPlayer.querySelector('.wizard-coat');
   var setupPlayerEyesColor = setupPlayer.querySelector('.wizard-eyes');
   var setupPlayerFireballColor = setupPlayer.querySelector('.setup-fireball');
@@ -29,6 +31,13 @@
   });
   setupPlayerFireballColor.addEventListener('click', function (evt) {
     onPlayerClick(evt.target, setupPlayerFireballInput, window.tools.FIREBALL_COLORS);
+  });
+
+
+  setupForm.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    window.backend.save(new FormData(setupForm), window.dialog.closePopup, window.tools.onError);
+
   });
 
 })();
