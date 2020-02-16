@@ -33,11 +33,13 @@
     onPlayerClick(evt.target, setupPlayerFireballInput, window.tools.FIREBALL_COLORS);
   });
 
-
   setupForm.addEventListener('submit', function (evt) {
+    var errorMessage = document.querySelector('.top-error');
     evt.preventDefault();
+    if (errorMessage) {
+      errorMessage.remove();
+    }
     window.backend.save(new FormData(setupForm), window.dialog.closePopup, window.tools.onError);
-
   });
 
 })();
