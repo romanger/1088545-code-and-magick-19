@@ -9,17 +9,13 @@
     OK: 200
   };
 
-  var request = function (data, onLoad, onError, method, url) {
+  var request = function (onLoad, onError) {
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
     xhr.addEventListener('load', function () {
       if (xhr.status === StatusCode.OK) {
-        if (method === 'GET') {
-          onLoad(xhr.response);
-        } else {
-          onLoad();
-        }
+        onLoad(xhr.response);
       } else {
         onError('Статус ответа: ' + xhr.status + ' ' + xhr.statusText);
       }
@@ -33,20 +29,19 @@
     });
 
     xhr.timeout = TIMEOUT_IN_MS;
-    xhr.open(method, url);
-    if (method === 'GET') {
-      xhr.send();
-    } else {
-      xhr.send(data);
-    }
+    return xhr;
   };
 
   var load = function (onLoad, onError) {
-    request('', onLoad, onError, 'GET', DATA_URL);
+    var xhr = request(onLoad, onError);
+    xhr.open('GET', DATA_URL);
+    xhr.send();
   };
 
   var save = function (data, onLoad, onError) {
-    request(data, onLoad, onError, 'POST', SAVE_URL);
+    var xhr = request(onLoad, onError);
+    xhr.open('POST', SAVE_URL);
+    xhr.send(data);
   };
 
   window.backend = {
